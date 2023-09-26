@@ -7,3 +7,11 @@ export const initialProjects = [
   { id: v1(), title: 'Проект4' },
   { id: v1(), title: 'Проект5' },
 ]
+
+export const  updateProjectsInLocalStorage = (projects) => {
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+
+export const projects = JSON.parse(localStorage.getItem('projects'))
+

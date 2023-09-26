@@ -4,13 +4,9 @@ import './App.scss';
 import Header from '../Header/Header';
 import ProjectsList from '../ProjectsList/ProjectsList';
 import TasksList from '../TasksList/TasksList';
-import { useSelector } from 'react-redux';
-import { getProjects } from '../../store/application/selectors';
+
 
 function App() {
-  const proj = useSelector(getProjects);
-
-  console.log(proj)
 
   return (
     <div className="App">

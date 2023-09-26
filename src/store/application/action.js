@@ -1,5 +1,6 @@
 export const ActionType = {
   ADD_PROJECT: 'application/addProject',
+  DELETE_PROJECT: 'application/deleteProject',
 }
 
 const addProject = (project) => ({
@@ -7,4 +8,9 @@ const addProject = (project) => ({
   payload: project,
 });
 
-export { addProject };
+const deleteProject = (projectId) => ({
+  type: ActionType.DELETE_PROJECT,
+  payload: projectId,
+});
+
+export { addProject, deleteProject };
