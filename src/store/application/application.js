@@ -1,9 +1,10 @@
 import { ActionType } from './action';
-import { projects, updateProjectsInLocalStorage } from '../../util';
+import { projects, updateProjectsInLocalStorage, initialTaskCard } from '../../util';
 
 
 const initialState = {
   projects: [...projects],
+  tasks: [...initialTaskCard],
 };
 
 

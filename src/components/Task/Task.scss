@@ -1,6 +1,7 @@
 .task {
     width: 98%;
-    height: 250px;
+    min-height: 250px;
+    height: auto;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 8px;
