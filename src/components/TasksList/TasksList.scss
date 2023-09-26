@@ -1,0 +1,28 @@
+.tasks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    &__category {
+        border: 1px solid gray;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+    }
+
+    &__category-title {
+        width: 100%;
+        font-family: 'Unbounded';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid gray;
+    }
+
+}

@@ -1,0 +1,93 @@
+.task {
+    width: 98%;
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 2px 4px 12px rgba(0,0,0,.08);
+
+    &__project {
+        font-family: 'Montserrat';
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: black;
+        margin: 5px 0;
+    }
+
+    &__title {
+        font-family: 'Unbounded';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        color: #2F447A;
+    }
+
+    &__description {
+        margin: 5px 0;
+        font-family: 'Montserrat';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: black;
+        width: 100%;
+        height: auto;
+    }
+
+    &__dates {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    &__date {
+        margin: 0;
+        font-family: 'Montserrat';
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: black;
+        text-transform: uppercase;
+    }
+
+    &__info {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    &__prioritet {
+        margin: 0;
+        font-family: 'Montserrat';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        color: black;
+        text-transform: uppercase;
+    }
+
+    &__status {
+        margin: 0;
+        font-family: 'Montserrat';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        color: black;
+        text-transform: uppercase;
+    }
+}
