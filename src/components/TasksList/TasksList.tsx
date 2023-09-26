@@ -20,7 +20,11 @@ export type TaskType = {
   projects: ProjectType
 }
 
-function TasksList() {
+type PropsType = {
+  openAddTaskPopup: () => void
+}
+
+function TasksList(props: PropsType) {
   const tasks = useSelector(getTasks);
 
 
@@ -37,38 +41,44 @@ function TasksList() {
     return tasks.filter((task: TaskType) => task.status === 'done');
   }
 
+  const handleOpenAddTaskPopup = () => {
+    props.openAddTaskPopup()
+  }
 
   return (
-    <section className='tasks'>
+    <section className='tasks-page'>
+      <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу</button>
+      <div className='tasks'>
+        <div className='tasks__category'>
+          <p className='tasks__category-title'>открыта</p>
+          {
+            returnOpensTasks().map((task: TaskType) => (
+              <Task key={task.id} task={task} />
+            ))
+          }
+        </div>
 
-      <div className='tasks__category'>
-        <p className='tasks__category-title'>открыта</p>
-        {
-          returnOpensTasks().map((task: TaskType) => (
-            <Task key={task.id} task={task} />
-          ))
-        }
+        <div className='tasks__category'>
+          <p className='tasks__category-title'>в разработке</p>
+          {
+            returnDevelopmentsTasks().map((task: TaskType) => (
+              <Task key={task.id} task={task} />
+            ))
+          }
+        </div>
+
+        <div className='tasks__category'>
+          <p className='tasks__category-title'>выполнена</p>
+          {
+            returnDoneTasks().map((task: TaskType) => (
+              <Task key={task.id} task={task} />
+            ))
+          }
+        </div>
+
       </div>
-
-      <div className='tasks__category'>
-        <p className='tasks__category-title'>в разработке</p>
-        {
-          returnDevelopmentsTasks().map((task: TaskType) => (
-            <Task key={task.id} task={task} />
-          ))
-        }
-      </div>
-
-      <div className='tasks__category'>
-        <p className='tasks__category-title'>выполнена</p>
-        {
-          returnDoneTasks().map((task: TaskType) => (
-            <Task key={task.id} task={task} />
-          ))
-        }
-      </div>
-
     </section>
+
   )
 }
 

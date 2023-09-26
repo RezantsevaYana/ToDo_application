@@ -1,10 +1,44 @@
+.tasks-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.add-task-btn {
+    margin: 30px;
+    border-radius: 50px;
+    border: 1px solid black;
+    background-color: #2F447A;
+    width: 200px;
+    height: 50px;
+    color: white;
+    font-family: 'Unbounded';
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.add-task-btn:hover {
+    background: #D78813;
+    border: 1px solid white;
+    transition: all 0.5s ease;
+}
+
 .tasks {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    overflow: hidden;
 
     &__category {
         border: 1px solid gray;
-        height: 100vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
