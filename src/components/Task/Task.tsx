@@ -40,7 +40,7 @@ function Task(props: PropsType) {
 
   return (
     <article className='task'>
-      <p className='task__project'>{props.task.projects.title}</p>
+      <p className='task__project'>{props.task.projects?.title}</p>
       <h3 className='task__title'>{props.task.title}</h3>
       <p className='task__description'>{props.task.description}</p>
 

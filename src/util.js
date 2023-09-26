@@ -74,6 +74,8 @@ export const initialTaskCard = [
   }
 ]
 
+export const tasks = initialTaskCard ? initialTaskCard : [];
+
 
 
 
