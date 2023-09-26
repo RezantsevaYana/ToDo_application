@@ -8,7 +8,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    text-decoration: none;
     cursor: pointer;
+
+    &__link {
+        text-decoration: none;
+    }
 
     &__title {
         text-decoration: none;

@@ -2,6 +2,7 @@ import React from 'react';
 import './Project.scss';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from '../../store/application/action';
+import { NavLink } from 'react-router-dom';
 
 type PropsType = {
   title: string,
@@ -17,7 +18,9 @@ function Project(props: PropsType) {
 
   return (
     <li className='project'>
-      <h3 className='project__title'>{props.title}</h3>
+      <NavLink to={`tasks/${props.id}`} className='project__link'>
+        <h3 className='project__title'>{props.title}</h3>
+      </NavLink>
       <button className='project__delete' onClick={deleteProjectHandler}></button>
     </li>
   )
