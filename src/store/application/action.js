@@ -3,6 +3,7 @@ export const ActionType = {
   DELETE_PROJECT: 'application/deleteProject',
   ADD_TASK: 'application/addTask',
 
+  UPDATE_TASKS: 'application/updateTasks',
 }
 
 const addProject = (project) => ({
@@ -20,6 +21,10 @@ const addTask = (task) => ({
   payload: task,
 });
 
+const updateTasks = (projectId) => ({
+  type: ActionType.UPDATE_TASKS,
+  payload: projectId
+});
 
 
-export { addProject, deleteProject, addTask };
+export { addProject, deleteProject, addTask, updateTasks };

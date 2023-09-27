@@ -1,7 +1,7 @@
 import React from 'react';
 import './Project.scss';
 import { useDispatch } from 'react-redux';
-import { deleteProject } from '../../store/application/action';
+import { deleteProject, updateTasks } from '../../store/application/action';
 import { NavLink } from 'react-router-dom';
 
 type PropsType = {
@@ -14,6 +14,7 @@ function Project(props: PropsType) {
 
   const deleteProjectHandler = () => {
     dispatch(deleteProject(props.id));
+    dispatch(updateTasks(props.id));
   }
 
   return (

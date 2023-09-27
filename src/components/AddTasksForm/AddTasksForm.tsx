@@ -68,8 +68,6 @@ function AddTaskForm(props: PropsType) {
     handleClosePopup()
   }
 
-  console.log(selectProject.current)
-
   const handleClosePopup = () => {
     props.onClose()
   }
