@@ -67,6 +67,11 @@ const applications = (state = initialState, action) => {
         ...state,
         tasks: updateTasksInStore(state.tasks, action.payload),
       };
+    case ActionType.SORT_TASKS:
+      return {
+        ...state,
+        tasks: action.payload,
+      };
     default:
       return state;
   }

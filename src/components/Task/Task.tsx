@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { DragEvent } from 'react';
 import './Task.scss';
 import { TaskType } from '../TasksList/TasksList';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/application/action';
+import { getTasks } from '../../store/application/selectors';
 
 type PropsType = {
   task: TaskType
+  draggable?: boolean;
+  onDragStart?: (e: DragEvent<HTMLElement>, task: TaskType) => void;
+  onDragLeave?: (e: DragEvent<HTMLElement>) => void;
+  onDragEnd?: (e: DragEvent<HTMLElement>) => void;
+  onDragOver?: (e: DragEvent<HTMLElement>) => void;
+  onDrop?: (e: DragEvent<HTMLElement>, task: TaskType) => void;
 }
 
 function Task(props: PropsType) {
@@ -43,8 +50,17 @@ function Task(props: PropsType) {
     dispatch(deleteTask(props.task.id));
   }
 
+
+
   return (
-    <article className='task'>
+    <article className='task'
+      draggable={true}
+      onDragStart={(e) => props.onDragStart && props.onDragStart(e, props.task)}
+      onDragLeave={(e) => props.onDragLeave && props.onDragLeave(e)}
+      onDragEnd={(e) => props.onDragEnd && props.onDragEnd(e)}
+      onDragOver={(e) => props.onDragOver && props.onDragOver(e)}
+      onDrop={(e) => props.onDrop && props.onDrop(e, props.task)}
+    >
       <button className='task__delete' onClick={handleDeleteButton}></button>
       <p className='task__project'>{props.task.projects?.title}</p>
       <h3 className='task__title'>{props.task.title}</h3>
