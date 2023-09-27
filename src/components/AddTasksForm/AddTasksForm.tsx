@@ -21,6 +21,7 @@ function AddTaskForm(props: PropsType) {
   const [priotityOpen, setPriotityOpen] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [error, setError] = useState<string | null>(null)
 
 
   const handleCreateTask = () => {
@@ -53,7 +54,16 @@ function AddTaskForm(props: PropsType) {
       priority: priority,
     }
 
+    if (name.trim() === '') {
+      setError('введите название задачи')
+      return;
+    }
+
     dispatch(addTask(task));
+
+    setName('');
+    setDescription('');
+    setError('');
 
     handleClosePopup()
   }
@@ -115,6 +125,7 @@ function AddTaskForm(props: PropsType) {
             onChange={onChangeNameHandler}
             className="task-input"
             placeholder="Введите название задачи" />
+          {error && <span className="span-error">{error}</span>}
         </div>
 
         <div className="select-list__container">
