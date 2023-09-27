@@ -11,3 +11,4 @@ export default combineReducers({
   [NameSpace.APPLICATION]: applications,
   [NameSpace.POPUPS]: popups,
 });
+

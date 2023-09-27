@@ -49,33 +49,39 @@ function TasksList(props: PropsType) {
     <section className='tasks-page'>
       <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу</button>
       <div className='tasks'>
-        <div className='tasks__category'>
-          <p className='tasks__category-title'>открыта</p>
-          {
-            returnOpensTasks().map((task: TaskType) => (
-              <Task key={task.id} task={task} />
-            ))
-          }
-        </div>
+        {
+          tasks.length === 0 && <p className='tasks-list__empty'>список задач пуст</p>
+        }
+        {tasks.length !== 0 &&
+          <>
+            <div className='tasks__category'>
+              <p className='tasks__category-title'>открыта</p>
+              {
+                returnOpensTasks().map((task: TaskType) => (
+                  <Task key={task.id} task={task} />
+                ))
+              }
+            </div>
 
-        <div className='tasks__category'>
-          <p className='tasks__category-title'>в разработке</p>
-          {
-            returnDevelopmentsTasks().map((task: TaskType) => (
-              <Task key={task.id} task={task} />
-            ))
-          }
-        </div>
+            <div className='tasks__category'>
+              <p className='tasks__category-title'>в разработке</p>
+              {
+                returnDevelopmentsTasks().map((task: TaskType) => (
+                  <Task key={task.id} task={task} />
+                ))
+              }
+            </div>
 
-        <div className='tasks__category'>
-          <p className='tasks__category-title'>выполнена</p>
-          {
-            returnDoneTasks().map((task: TaskType) => (
-              <Task key={task.id} task={task} />
-            ))
-          }
-        </div>
-
+            <div className='tasks__category'>
+              <p className='tasks__category-title'>выполнена</p>
+              {
+                returnDoneTasks().map((task: TaskType) => (
+                  <Task key={task.id} task={task} />
+                ))
+              }
+            </div>
+          </>
+        }
       </div>
     </section>
 
