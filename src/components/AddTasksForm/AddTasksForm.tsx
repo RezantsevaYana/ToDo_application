@@ -64,6 +64,9 @@ function AddTaskForm(props: PropsType) {
     setName('');
     setDescription('');
     setError('');
+    setProjectsOpen(false);
+    setPriotityOpen(false)
+
 
     handleClosePopup()
   }

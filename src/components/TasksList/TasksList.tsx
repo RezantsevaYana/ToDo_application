@@ -1,4 +1,4 @@
-import React, { DragEvent, useState } from 'react';
+import React, { DragEvent, useState, useEffect } from 'react';
 import './TasksList.scss';
 import Task from '../Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,13 @@ import { updateTasksInLocalStorage } from '../../util';
 
 export type TaskStatusType = 'queue' | 'development' | 'done';
 export type TaskPriorityType = 'low' | 'medium' | 'hight';
+
+
+export type BoardType = {
+  id: number,
+  title: string,
+  items: TaskType
+}
 
 export type TaskType = {
   id: string
@@ -29,47 +36,40 @@ type PropsType = {
 function TasksList(props: PropsType) {
   const dispatch = useDispatch();
   const tasks = useSelector(getTasks);
-  const [currentCard, setCurrentCard] = useState<TaskType>()
+  const [currentCard, setCurrentCard] = useState<TaskType>();
+  const [currentBoard, setCurrentBoard] = useState<BoardType>();
+
+  const boards = [
+    { id: 1, items: tasks.filter((task: TaskType) => task.status === 'queue'), title: 'открыта' },
+    { id: 2, items: tasks.filter((task: TaskType) => task.status === 'development'), title: 'в разработке' },
+    { id: 3, items: tasks.filter((task: TaskType) => task.status === 'done'), title: 'выполнена' },
+  ]
 
 
-  const returnOpensTasks = () => {
-    return tasks.filter((task: TaskType) => task.status === 'queue');
+  function handleOpenAddTaskPopup() {
+    props.openAddTaskPopup();
   }
 
-
-  const returnDevelopmentsTasks = () => {
-    return tasks.filter((task: TaskType) => task.status === 'development');
-  }
-
-  const returnDoneTasks = () => {
-    return tasks.filter((task: TaskType) => task.status === 'done');
-  }
-
-  const handleOpenAddTaskPopup = () => {
-    props.openAddTaskPopup()
-  }
-
-
-  const dragStartHandler = (e: DragEvent<HTMLElement>, task: TaskType) => {
+  // dnd для сортировки карточек в пределах одной колонки
+  const dragStartHandler = (e: DragEvent<HTMLElement>, task: TaskType, board: BoardType) => {
     setCurrentCard(task);
+    setCurrentBoard(board);
   }
 
   const dragLeaveHandler = (e: DragEvent<HTMLElement>) => {
-    e.currentTarget.style.background = 'white'
-
+    e.preventDefault()
+    e.currentTarget.style.background = 'white';
   }
 
   const dragEndHandler = (e: DragEvent<HTMLElement>) => {
-    e.currentTarget.style.background = 'white'
+    e.preventDefault()
+    e.currentTarget.style.background = 'white';
   }
 
-  const dragOverHandler = (e: DragEvent<HTMLElement>, targetTask: TaskType) => {
-    e.currentTarget.style.background = 'lightgrey'
-
-    console.log(targetTask.id, currentCard?.id)
-
+  const dragOverHandler = (e: DragEvent<HTMLElement>, targetTask: TaskType, board: BoardType) => {
+    e.preventDefault()
+    e.currentTarget.style.background = 'grey';
     if (currentCard && currentCard !== targetTask) {
-      console.log(targetTask.id, currentCard.id)
       const currentIndex = tasks.findIndex((task: TaskType) => task === currentCard);
       const targetIndex = tasks.findIndex((task: TaskType) => task === targetTask);
 
@@ -82,9 +82,49 @@ function TasksList(props: PropsType) {
     }
   }
 
+  const dropHandler = (e: DragEvent<HTMLElement>, targetTask: TaskType, board: BoardType) => {
+    e.currentTarget.style.background = 'white';
+    e.preventDefault()
+  };
 
-  const dropHandler = (e: DragEvent<HTMLElement>, task: TaskType) => {
+  // dnd для перемещения карточек между колонками
+  const dragLeaveHandlerBoard = (e: DragEvent<HTMLElement>) => {
+    e.currentTarget.style.background = '#f9f9f9';
   }
+
+  const dragEndHandlerBoard = (e: DragEvent<HTMLElement>, targetBoard: BoardType) => {
+    e.currentTarget.style.background = 'lightgrey';
+    e.preventDefault();
+  }
+
+  const dropHandlerBoard = (e: DragEvent<HTMLElement>, targetBoard: BoardType) => {
+    e.currentTarget.style.background = '#f9f9f9';
+    e.preventDefault()
+
+    const statusMappings: { [key: string]: TaskStatusType } = {
+      'открыта': 'queue',
+      'в разработке': 'development',
+      'выполнена': 'done',
+    };
+
+    const taskStatus = statusMappings[targetBoard.title];
+
+    if (taskStatus !== undefined && currentCard) {
+      const updatedTasks = tasks.map((task: TaskType) => {
+        if (task.id === currentCard.id) {
+          return { ...task, status: taskStatus };
+        }
+        return task;
+      });
+
+      dispatch(sortTasks(updatedTasks));
+      updateTasksInLocalStorage(updatedTasks);
+      return updatedTasks;
+    }
+
+    return tasks;
+  }
+
 
   return (
     <section className='tasks-page'>
@@ -94,52 +134,26 @@ function TasksList(props: PropsType) {
           tasks.length === 0 && <p className='tasks-list__empty'>список задач пуст</p>
         }
         {tasks.length !== 0 &&
-          <>
-            <div className='tasks__category'>
-              <p className='tasks__category-title'>открыта</p>
-              {
-                returnOpensTasks().map((task: TaskType) => (
-                  <Task key={task.id} task={task}
-                    draggable={true}
-                    onDragStart={(e) => dragStartHandler(e, task)}
-                    onDragLeave={(e) => dragLeaveHandler(e)}
-                    onDragEnd={(e) => dragEndHandler(e)}
-                    onDragOver={(e) => dragOverHandler(e, task)}
-                    onDrop={(e) => dropHandler(e, task)} />
-                ))
-              }
-            </div>
 
-            <div className='tasks__category'>
-              <p className='tasks__category-title'>в разработке</p>
+          boards.map((board) => (
+            <div className='tasks__category' key={board.id}
+              onDragLeave={(e) => dragLeaveHandlerBoard(e)}
+              onDragOver={(e) => dragEndHandlerBoard(e, board)}
+              onDrop={(e) => dropHandlerBoard(e, board)} >
+              <p className='tasks__category-title'>{board.title}</p>
               {
-                returnDevelopmentsTasks().map((task: TaskType) => (
-                  <Task key={task.id} task={task}
+                board.items.map((task: TaskType) => (
+                  <Task key={task.id} task={task} board={board}
                     draggable={true}
-                    onDragStart={(e) => dragStartHandler(e, task)}
+                    onDragStart={(e) => dragStartHandler(e, task, board)}
                     onDragLeave={(e) => dragLeaveHandler(e)}
                     onDragEnd={(e) => dragEndHandler(e)}
-                    onDragOver={(e) => dragOverHandler(e, task)}
-                    onDrop={(e) => dropHandler(e, task)} />
+                    onDragOver={(e) => dragOverHandler(e, task, board)}
+                    onDrop={(e) => dropHandler(e, task, board)} />
                 ))
               }
             </div>
-
-            <div className='tasks__category'>
-              <p className='tasks__category-title'>выполнена</p>
-              {
-                returnDoneTasks().map((task: TaskType) => (
-                  <Task key={task.id} task={task}
-                    draggable={true}
-                    onDragStart={(e) => dragStartHandler(e, task)}
-                    onDragLeave={(e) => dragLeaveHandler(e)}
-                    onDragEnd={(e) => dragEndHandler(e)}
-                    onDragOver={(e) => dragOverHandler(e, task)}
-                    onDrop={(e) => dropHandler(e, task)} />
-                ))
-              }
-            </div>
-          </>
+          ))
         }
       </div>
     </section>

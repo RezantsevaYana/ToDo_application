@@ -3,16 +3,17 @@ import './Task.scss';
 import { TaskType } from '../TasksList/TasksList';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/application/action';
-import { getTasks } from '../../store/application/selectors';
+import { BoardType } from '../TasksList/TasksList';
 
 type PropsType = {
   task: TaskType
+  board: BoardType
   draggable?: boolean;
-  onDragStart?: (e: DragEvent<HTMLElement>, task: TaskType) => void;
+  onDragStart?: (e: DragEvent<HTMLElement>, task: TaskType, board: BoardType) => void;
   onDragLeave?: (e: DragEvent<HTMLElement>) => void;
   onDragEnd?: (e: DragEvent<HTMLElement>) => void;
-  onDragOver?: (e: DragEvent<HTMLElement>) => void;
-  onDrop?: (e: DragEvent<HTMLElement>, task: TaskType) => void;
+  onDragOver?: (e: DragEvent<HTMLElement>, task: TaskType, board: BoardType) => void;
+  onDrop?: (e: DragEvent<HTMLElement>, task: TaskType, board: BoardType) => void;
 }
 
 function Task(props: PropsType) {
@@ -55,11 +56,11 @@ function Task(props: PropsType) {
   return (
     <article className='task'
       draggable={true}
-      onDragStart={(e) => props.onDragStart && props.onDragStart(e, props.task)}
+      onDragStart={(e) => props.onDragStart && props.onDragStart(e, props.task, props.board)}
       onDragLeave={(e) => props.onDragLeave && props.onDragLeave(e)}
       onDragEnd={(e) => props.onDragEnd && props.onDragEnd(e)}
-      onDragOver={(e) => props.onDragOver && props.onDragOver(e)}
-      onDrop={(e) => props.onDrop && props.onDrop(e, props.task)}
+      onDragOver={(e) => props.onDragOver && props.onDragOver(e, props.task, props.board)}
+      onDrop={(e) => props.onDrop && props.onDrop(e, props.task, props.board)}
     >
       <button className='task__delete' onClick={handleDeleteButton}></button>
       <p className='task__project'>{props.task.projects?.title}</p>
