@@ -130,6 +130,24 @@
         border-bottom: 1px solid black;
         background-color: white;
         cursor: pointer;
+        position: relative;
+    }
+
+    &__button::after {
+        content: '';
+        display: block;
+        background-image: url(../../images/arrow.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+
+    &__button_open::after {
+        transform: (rotate(180deg));
     }
 
 }

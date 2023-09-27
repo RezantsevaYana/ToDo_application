@@ -109,7 +109,7 @@ function AddTaskForm(props: PropsType) {
 
         <div className="select-list__container">
           <p className="select-list__title">выберете проект</p>
-          <button ref={selectProject} className="select-list__button" onClick={handleListProjectToggle} id={projects[0]?.id}>{projects[0]?.title}</button>
+          <button ref={selectProject} className={`select-list__button ${projectsOpen ? 'select-list__button_open' : ''}`} onClick={handleListProjectToggle} id={projects[0]?.id}>{projects[0]?.title}</button>
           <ul className={`select-list ${projectsOpen ? 'select-list_open' : ''}`}>
             {
               projects.map((project: ProjectType) => (
@@ -141,7 +141,7 @@ function AddTaskForm(props: PropsType) {
 
         <div className="select-list__container">
           <p className="select-list__title">Установите приоритет</p>
-          <button ref={selectPriority} className="select-list__button" onClick={handleListPriorityToggle}>высокий</button>
+          <button ref={selectPriority} className={`select-list__button ${priotityOpen ? 'select-list__button_open' : ''}`} onClick={handleListPriorityToggle}>высокий</button>
           <ul className={`select-list ${priotityOpen ? 'select-list_open' : ''}`}>
             {
               priorityList.map((priority) => (
