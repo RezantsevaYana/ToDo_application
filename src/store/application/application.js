@@ -1,5 +1,5 @@
 import { ActionType } from './action';
-import { projects, updateProjectsInLocalStorage, initialTaskCard, tasks } from '../../util';
+import { projects, updateProjectsInLocalStorage, tasks, updateTasksInLocalStorage } from '../../util';
 
 
 const initialState = {
@@ -21,6 +21,13 @@ const addProjectInStore = (projects, payload) => {
   return newProjects;
 }
 
+const addTaskInStore = (tasks, payload) => {
+  console.log(tasks, payload)
+  const newTasks = [...tasks, payload]
+  updateTasksInLocalStorage(newTasks);
+  return newTasks;
+}
+
 
 const applications = (state = initialState, action) => {
   switch (action.type) {
@@ -33,6 +40,11 @@ const applications = (state = initialState, action) => {
       return {
         ...state,
         projects: deleteProjectInStore(state.projects, action.payload),
+      };
+    case ActionType.ADD_TASK:
+      return {
+        ...state,
+        tasks: addTaskInStore(state.tasks, action.payload),
       };
     default:
       return state;

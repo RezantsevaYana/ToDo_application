@@ -8,8 +8,6 @@ type PropsType = {
 
 function Task(props: PropsType) {
 
-  console.log(props.task);
-
   const returnPriority = () => {
     if (props.task.priority === 'hight') {
       return 'высокий'
@@ -51,7 +49,7 @@ function Task(props: PropsType) {
       </div>
 
       <div className='task__info'>
-        <p className='task__prioritet'>приоритет: <span>{returnPriority()}</span></p>
+        <p className={`task__prioritet ${props.task.priority === 'hight' ? 'task__prioritet_red' : ''}`}>приоритет: <span>{returnPriority()}</span></p>
         <p className='task__status'>текущий статус: <span>{returnStatus()}</span></p>
       </div>
     </article>

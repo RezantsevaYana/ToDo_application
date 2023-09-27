@@ -1,9 +1,8 @@
 import { v1 } from 'uuid';
 
-const currentDate = new Date();
+export const currentDate = new Date();
 
-
-const formateDate = (date) => {
+export const formateDate = (date) => {
   const currentDay = date.getDate();
   const currentMonth = date.getMonth() + 1;
   const currentYear = date.getFullYear();
@@ -23,6 +22,10 @@ export const initialProjects = [
 
 export const updateProjectsInLocalStorage = (projects) => {
   localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+export const updateTasksInLocalStorage = (tasks) => {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 
@@ -74,7 +77,14 @@ export const initialTaskCard = [
   }
 ]
 
-export const tasks = initialTaskCard ? initialTaskCard : [];
+export const tasks = JSON.parse(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : [];
+
+
+export const priorityList = [
+  { id: 1, title: 'высокий' },
+  { id: 2, title: 'средний' },
+  { id: 3, title: 'низкий' },
+]
 
 
 
