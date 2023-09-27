@@ -6,6 +6,12 @@
     justify-content: start;
 }
 
+@media (max-width: 650px) {
+    .tasks-page {
+        align-items: center;
+    }
+}
+
 .add-task-btn {
     margin: 30px;
     border-radius: 50px;
@@ -59,6 +65,19 @@
         text-align: center;
         padding: 10px;
         border-bottom: 1px solid gray;
+    }
+
+
+    @media (max-width: 650px) {
+        &__category-title {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        &__category-title {
+            font-size: 12px;
+        }
     }
 
 }

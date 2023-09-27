@@ -64,7 +64,7 @@ function Task(props: PropsType) {
     >
       <button className='task__delete' onClick={handleDeleteButton}></button>
       <p className='task__project'>{props.task.projects?.title}</p>
-      <h3 className='task__title'>{props.task.title}</h3>
+      <h3 className={`task__title ${props.task.status === 'done' ? 'task__title_done' : ''}`}>{props.task.title}</h3>
       <p className='task__description'>{props.task.description}</p>
 
       <div className='task__dates'>

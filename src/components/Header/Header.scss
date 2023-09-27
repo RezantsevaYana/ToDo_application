@@ -27,6 +27,10 @@
         text-transform: uppercase;
     }
 
+    &__link:hover {
+        color: #B6D45F;
+    }
+
     &__link_active {
         color: #D78813;
     }
