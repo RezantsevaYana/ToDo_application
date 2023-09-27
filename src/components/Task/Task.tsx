@@ -1,12 +1,15 @@
 import React from 'react';
 import './Task.scss';
 import { TaskType } from '../TasksList/TasksList';
+import { useDispatch } from 'react-redux';
+import { deleteTask } from '../../store/application/action';
 
 type PropsType = {
   task: TaskType
 }
 
 function Task(props: PropsType) {
+  const dispatch = useDispatch();
 
   const returnPriority = () => {
     if (props.task.priority === 'hight') {
@@ -36,8 +39,13 @@ function Task(props: PropsType) {
     }
   }
 
+  const handleDeleteButton = () => {
+    dispatch(deleteTask(props.task.id));
+  }
+
   return (
     <article className='task'>
+      <button className='task__delete' onClick={handleDeleteButton}></button>
       <p className='task__project'>{props.task.projects?.title}</p>
       <h3 className='task__title'>{props.task.title}</h3>
       <p className='task__description'>{props.task.description}</p>
