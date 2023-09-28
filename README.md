@@ -31,5 +31,5 @@ TypeScript, React, React Hooks, Redux
 ### `npm test`  
 
 ## Ссылка на размещенный проект  
-https://RezantsevaYana.github.io/ToDosApplication
+https://RezantsevaYana.github.io/ToDo_application
 
