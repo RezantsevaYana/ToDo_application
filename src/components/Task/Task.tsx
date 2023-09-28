@@ -52,7 +52,6 @@ function Task(props: PropsType) {
   }
 
 
-
   return (
     <article className='task'
       draggable={true}
