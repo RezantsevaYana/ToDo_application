@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ToDosApplication/static/css/main.2e38655a.css",
-    "main.js": "/ToDosApplication/static/js/main.fadd3529.js",
+    "main.css": "/ToDosApplication/static/css/main.ace82e45.css",
+    "main.js": "/ToDosApplication/static/js/main.6550f4f5.js",
     "static/js/787.28cb0dcd.chunk.js": "/ToDosApplication/static/js/787.28cb0dcd.chunk.js",
     "static/media/Unbounded-SemiBold.ttf": "/ToDosApplication/static/media/Unbounded-SemiBold.32ef5e5f63476c23204a.ttf",
     "static/media/Unbounded-Bold.ttf": "/ToDosApplication/static/media/Unbounded-Bold.baf9ce2e60b55ef6e7b9.ttf",
@@ -39,12 +39,12 @@
     "index.html": "/ToDosApplication/index.html",
     "static/media/arrow.svg": "/ToDosApplication/static/media/arrow.1a6f92cc90c42fb40829.svg",
     "static/media/close-btn.svg": "/ToDosApplication/static/media/close-btn.cfc2b437cde9485738d2.svg",
-    "main.2e38655a.css.map": "/ToDosApplication/static/css/main.2e38655a.css.map",
-    "main.fadd3529.js.map": "/ToDosApplication/static/js/main.fadd3529.js.map",
+    "main.ace82e45.css.map": "/ToDosApplication/static/css/main.ace82e45.css.map",
+    "main.6550f4f5.js.map": "/ToDosApplication/static/js/main.6550f4f5.js.map",
     "787.28cb0dcd.chunk.js.map": "/ToDosApplication/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e38655a.css",
-    "static/js/main.fadd3529.js"
+    "static/css/main.ace82e45.css",
+    "static/js/main.6550f4f5.js"
   ]
 }
