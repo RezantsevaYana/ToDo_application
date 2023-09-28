@@ -70,7 +70,7 @@ function Task(props: PropsType) {
       <div className='task__dates'>
         <p className='task__date'>дата создания: {props.task.startDate}</p>
         <p className='task__date'>дата окончания: {props.task.finalDate}</p>
-        <p className='task__date'>время в работе: {props.task.deltaDay}</p>
+        <p className='task__date'>время в работе: {props.task.deltaDay} дней</p>
       </div>
 
       <div className='task__info'>
