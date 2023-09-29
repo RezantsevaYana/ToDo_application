@@ -2,8 +2,8 @@ import React from 'react';
 import './ProjectsList.scss';
 import { v1 } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProjects } from '../../store/application/selectors';
-import { addProject } from '../../store/application/action'
+import { getProjects } from 'store/application/selectors';
+import { addProject } from 'store/application/action'
 import Project from '../Project/Project';
 import AddProjectForm from '../AddProjectForm/AddProjectForm';
 

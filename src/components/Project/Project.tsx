@@ -1,7 +1,7 @@
 import React from 'react';
 import './Project.scss';
 import { useDispatch } from 'react-redux';
-import { deleteProject, updateTasks } from '../../store/application/action';
+import { deleteProject, updateTasks } from 'store/application/action';
 import { NavLink } from 'react-router-dom';
 
 type PropsType = {

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './components/App/App';
+import App from 'components/App/App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
-import combineReducers from '../src/store/reducer';
+import combineReducers from 'store/reducer';
 import Provider from 'react-redux/es/components/Provider';
 
 const store = createStore(combineReducers);

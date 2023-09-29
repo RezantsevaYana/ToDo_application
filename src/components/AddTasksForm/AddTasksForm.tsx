@@ -1,12 +1,12 @@
 import React, { useState, useRef, RefObject, ChangeEvent } from "react";
 import './AddTasksForm.scss';
-import { getProjects } from "../../store/application/selectors";
-import { useSelector, useDispatch } from "react-redux";
-import { ProjectType } from '../ProjectsList/ProjectsList';
-import { priorityList } from '../../util/util';
 import { v1 } from 'uuid';
-import { addTask } from '../../store/application/action';
+import { useSelector, useDispatch } from "react-redux";
 import Datetime from 'react-datetime';
+import { ProjectType } from '../ProjectsList/ProjectsList';
+import { getProjects } from "store/application/selectors";
+import { priorityList } from 'util/util';
+import { addTask } from 'store/application/action';
 
 
 type PropsType = {

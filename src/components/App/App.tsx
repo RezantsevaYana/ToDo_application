@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.scss';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header/Header';
 import ProjectsList from '../ProjectsList/ProjectsList';
 import TasksList from '../TasksList/TasksList';
 import AddTaskForm from '../AddTasksForm/AddTasksForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { getPopups } from '../../store/popups/selectors';
-import { togglePopup, closeALLPopups } from '../../store/popups/action';
+import { getPopups } from 'store/popups/selectors';
+import { togglePopup, closeALLPopups } from 'store/popups/action';
 
 
 function App() {

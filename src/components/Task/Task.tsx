@@ -1,9 +1,8 @@
 import React, { DragEvent } from 'react';
 import './Task.scss';
-import { TaskType } from '../TasksList/TasksList';
 import { useDispatch } from 'react-redux';
-import { deleteTask } from '../../store/application/action';
-import { BoardType } from '../TasksList/TasksList';
+import { deleteTask } from 'store/application/action';
+import { TaskType, BoardType } from '../TasksList/TasksList';
 
 type PropsType = {
   task: TaskType

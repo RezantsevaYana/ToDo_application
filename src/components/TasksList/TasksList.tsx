@@ -2,13 +2,13 @@ import React, { DragEvent, useState, useEffect } from 'react';
 import './TasksList.scss';
 import Task from '../Task/Task';
 import SearchForm from '../SearchForm/SearchForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTasks } from '../../store/application/selectors';
 import { ProjectType } from '../ProjectsList/ProjectsList';
-import { sortTasks } from '../../store/application/action';
-import { updateTasksInLocalStorage } from '../../util/util';
-import { searchFilterItems } from '../../util/filter';
-import { getSerchStr } from '../../store/filters/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTasks } from 'store/application/selectors';
+import { sortTasks } from 'store/application/action';
+import { getSerchStr } from 'store/filters/selectors';
+import { updateTasksInLocalStorage } from 'util/util';
+import { searchFilterItems } from 'util/filter';
 
 export type TaskStatusType = 'queue' | 'development' | 'done';
 export type TaskPriorityType = 'low' | 'medium' | 'hight';
@@ -133,8 +133,8 @@ function TasksList(props: PropsType) {
 
   return (
     <section className='tasks-page'>
+      <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу +</button>
       <SearchForm/>
-      <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу</button>
       <div className='tasks'>
         {
           tasks.length === 0 && <p className='tasks-list__empty'>список задач пуст</p>
