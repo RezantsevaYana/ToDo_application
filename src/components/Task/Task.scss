@@ -33,12 +33,22 @@
 
     &__project {
         font-family: 'Montserrat';
-        font-size: 10px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         color: black;
         margin: 5px 0;
+    }
+
+    &__number {
+        font-family: 'Montserrat';
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: black;
+        margin: 10px 0;
     }
 
     &__title {

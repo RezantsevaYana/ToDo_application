@@ -3,5 +3,9 @@ export const searchFilterItems = (items, searchQuery) => {
     return items;
   }
 
-  return items.filter((item) => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  return items.filter((item, index) => {
+    const titleMatch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const numberMatch = (index+1).toString().includes(searchQuery);
+    return titleMatch || numberMatch;
+  });
 };

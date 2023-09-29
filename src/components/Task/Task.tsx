@@ -1,13 +1,14 @@
 import React, { DragEvent } from 'react';
 import './Task.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteTask } from 'store/application/action';
 import { TaskType, BoardType } from '../TasksList/TasksList';
+import { getTasks } from 'store/application/selectors';
 
 type PropsType = {
   task: TaskType
   board: BoardType
-  draggable?: boolean;
+  draggable?: boolean
   onDragStart?: (e: DragEvent<HTMLElement>, task: TaskType, board: BoardType) => void;
   onDragLeave?: (e: DragEvent<HTMLElement>) => void;
   onDragEnd?: (e: DragEvent<HTMLElement>) => void;
@@ -17,6 +18,9 @@ type PropsType = {
 
 function Task(props: PropsType) {
   const dispatch = useDispatch();
+  const tasks = useSelector(getTasks);
+  const taskIndex = tasks.findIndex((task: TaskType) => task.id === props.task.id);
+
 
   const returnPriority = () => {
     if (props.task.priority === 'hight') {
@@ -61,7 +65,8 @@ function Task(props: PropsType) {
       onDrop={(e) => props.onDrop && props.onDrop(e, props.task, props.board)}
     >
       <button className='task__delete' onClick={handleDeleteButton}></button>
-      <p className='task__project'>{props.task.projects?.title}</p>
+      <p className='task__project'>Проект: {props.task.projects?.title}</p>
+      <p className='task__number'>Задача № {taskIndex + 1}</p>
       <h3 className={`task__title ${props.task.status === 'done' ? 'task__title_done' : ''}`}>{props.task.title}</h3>
       <p className='task__description'>{props.task.description}</p>
 
