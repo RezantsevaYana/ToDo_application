@@ -43,6 +43,7 @@
         background-size: contain;
         cursor: pointer;
         transition: opacity 0.5 ease;
+        z-index: 2;
     }
 
     &__delete:hover {
