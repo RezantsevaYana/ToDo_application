@@ -134,7 +134,7 @@ function TasksList(props: PropsType) {
   return (
     <section className='tasks-page'>
       <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу +</button>
-      <SearchForm/>
+      { tasks.length !== 0 && <SearchForm/> }
       <div className='tasks'>
         {
           tasks.length === 0 && <p className='tasks-list__empty'>список задач пуст</p>
