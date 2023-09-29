@@ -1,0 +1,30 @@
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    margin: 40px 0 40px 35px;
+
+    &__title {
+        font-family: 'Unbounded';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: normal;
+        color: black;
+    }
+
+    &__input {
+    width: 100%;
+    height: 100%;
+    font-family: 'Unbounded';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    box-shadow: 1px 3px 11px 6px rgba(34, 60, 80, 0.2);
+    }
+}

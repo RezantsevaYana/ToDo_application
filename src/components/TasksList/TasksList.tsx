@@ -6,6 +6,7 @@ import { getTasks } from '../../store/application/selectors';
 import { ProjectType } from '../ProjectsList/ProjectsList';
 import { sortTasks } from '../../store/application/action';
 import { updateTasksInLocalStorage } from '../../util';
+import SearchForm from '../SearchForm/SearchForm';
 
 export type TaskStatusType = 'queue' | 'development' | 'done';
 export type TaskPriorityType = 'low' | 'medium' | 'hight';
@@ -128,6 +129,7 @@ function TasksList(props: PropsType) {
 
   return (
     <section className='tasks-page'>
+      <SearchForm/>
       <button className='add-task-btn' onClick={handleOpenAddTaskPopup}>Добавить задачу</button>
       <div className='tasks'>
         {
