@@ -8,7 +8,7 @@ const initialState = {
 
 const filters = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.ADD_SEARCH_STR:
+    case ActionType.SET_SEARCH_STR:
       return {
         ...state,
         searchStr: action.payload,

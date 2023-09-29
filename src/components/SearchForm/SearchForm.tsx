@@ -1,11 +1,17 @@
 import React, { useState, ChangeEvent } from "react";
 import './SearchForm.scss';
+import { useDispatch } from "react-redux";
+import { setSearchStr } from "../../store/filters/action";
 
 
 function SearchForm() {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) };
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchStr(e.target.value));
+    setValue(e.target.value)
+  };
 
   return (
     <form className="search-form">

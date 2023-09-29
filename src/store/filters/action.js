@@ -1,10 +1,10 @@
 export const ActionType = {
-  ADD_SEARCH_STR: 'filters/addSearchStr',
+  SET_SEARCH_STR: 'filters/setSearchStr',
   CLEAR_SEARCH_STR: 'filters/clearSearchStr',
 }
 
-const addSearchStr = (payload) => ({
-  type: ActionType.ADD_SEARCH_STR,
+const setSearchStr = (payload) => ({
+  type: ActionType.SET_SEARCH_STR,
   payload
 });
 
@@ -13,4 +13,4 @@ const clearSearchStr = (payload) => ({
   payload,
 });
 
-export { addSearchStr, clearSearchStr }
+export { setSearchStr, clearSearchStr }

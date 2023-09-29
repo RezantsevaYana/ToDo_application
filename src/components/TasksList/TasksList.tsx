@@ -1,12 +1,14 @@
 import React, { DragEvent, useState, useEffect } from 'react';
 import './TasksList.scss';
 import Task from '../Task/Task';
+import SearchForm from '../SearchForm/SearchForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTasks } from '../../store/application/selectors';
 import { ProjectType } from '../ProjectsList/ProjectsList';
 import { sortTasks } from '../../store/application/action';
-import { updateTasksInLocalStorage } from '../../util';
-import SearchForm from '../SearchForm/SearchForm';
+import { updateTasksInLocalStorage } from '../../util/util';
+import { searchFilterItems } from '../../util/filter';
+import { getSerchStr } from '../../store/filters/selectors';
 
 export type TaskStatusType = 'queue' | 'development' | 'done';
 export type TaskPriorityType = 'low' | 'medium' | 'hight';
@@ -37,13 +39,15 @@ type PropsType = {
 function TasksList(props: PropsType) {
   const dispatch = useDispatch();
   const tasks = useSelector(getTasks);
+  const searchStr = useSelector(getSerchStr);
   const [currentCard, setCurrentCard] = useState<TaskType>();
   const [currentBoard, setCurrentBoard] = useState<BoardType>();
+  const filteredTasks = searchFilterItems(tasks, searchStr);
 
   const boards = [
-    { id: 1, items: tasks.filter((task: TaskType) => task.status === 'queue'), title: 'открыта' },
-    { id: 2, items: tasks.filter((task: TaskType) => task.status === 'development'), title: 'в разработке' },
-    { id: 3, items: tasks.filter((task: TaskType) => task.status === 'done'), title: 'выполнена' },
+    { id: 1, items: filteredTasks.filter((task: TaskType) => task.status === 'queue'), title: 'открыта' },
+    { id: 2, items: filteredTasks.filter((task: TaskType) => task.status === 'development'), title: 'в разработке' },
+    { id: 3, items: filteredTasks.filter((task: TaskType) => task.status === 'done'), title: 'выполнена' },
   ]
 
 
@@ -135,7 +139,10 @@ function TasksList(props: PropsType) {
         {
           tasks.length === 0 && <p className='tasks-list__empty'>список задач пуст</p>
         }
-        {tasks.length !== 0 &&
+        {
+          (filteredTasks.length === 0 && tasks.length !== 0) && <p className='tasks-list__empty'>по вашему запросу ничего не найдено</p>
+        }
+        {filteredTasks.length !== 0 &&
 
           boards.map((board) => (
             <div className='tasks__category' key={board.id}

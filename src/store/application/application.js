@@ -1,5 +1,5 @@
 import { ActionType } from './action';
-import { projects, updateProjectsInLocalStorage, tasks, updateTasksInLocalStorage } from '../../util';
+import { projects, updateProjectsInLocalStorage, tasks, updateTasksInLocalStorage } from '../../util/util';
 
 
 export const initialState = {

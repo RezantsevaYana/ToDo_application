@@ -3,7 +3,7 @@ import './AddTasksForm.scss';
 import { getProjects } from "../../store/application/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { ProjectType } from '../ProjectsList/ProjectsList';
-import { priorityList } from '../../util';
+import { priorityList } from '../../util/util';
 import { v1 } from 'uuid';
 import { addTask } from '../../store/application/action';
 import Datetime from 'react-datetime';
